@@ -60,12 +60,12 @@ public class FoodPage extends BasePage {
         return this;
     }
 
-    @Step("Проверка добавленного товара в таблице.")
+    @Step("Проверка добавленного товара {name} в таблице.")
     public void assertFormFields(String name, String type, Boolean isExotic) throws InterruptedException {
+        Thread.sleep(1000);
         List<WebElement> rows = driver.findElements(By.xpath("//tr"));
         WebElement lastRow = rows.get(rows.size() - 1);
         List<WebElement> cells = lastRow.findElements(By.tagName("td"));
-        Thread.sleep(1500);
 
         Assertions.assertAll("Проверка полей таблицы",
                 () -> assertEquals(name, cells.get(0).getText(), "Проверка поля 'Наименование'."),
